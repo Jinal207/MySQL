@@ -1,0 +1,15 @@
+1>Describe table
+-->desc table_name;
+
+2>WHERE clause
+-->select * from table_name where criteria = 'value';
+
+3>not in
+-->select * from table_name where criteria not in('value');
+
+4>like
+-->select * from table_name where criteria like ('value');
+-->select * from table_name where criteria like 'value';
+
+5>alias name
+-->select col-1 "alias",col-2 "alias" from table_name;

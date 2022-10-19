@@ -1,0 +1,142 @@
+1>Exercise on retrieving records from a table.
+select * from client_master;
+
+    +----------+---------+--------+---------+-------------+--------+
+| Clientno | Name    | city   | pincode | state       | baldue |
++----------+---------+--------+---------+-------------+--------+
+| C00001   | Ivan    | Bombay |  400054 | Maharashtra |  15000 |
+| C00002   | Vandana | Madras |  780001 | Tamilnadu   |      0 |
+| C00003   | Pramada | Bombay |  400057 | Maharashtra |   5000 |
+| C00004   | Basu    | Bombay |  400056 | Maharashtra |      0 |
+| C00005   | Ravi    | Delhi  |  100001 |             |   2000 |
+| C00006   | Rukmini | Bombay |  400050 | Maharashtra |      0 |
+| C00001   | Ivan    | Bombay |  400054 | Maharashtra |  15000 |
+| C00002   | Vandana | Madras |  780001 | Tamilnadu   |      0 |
+| C00003   | Pramada | Bombay |  400057 | Maharashtra |   5000 |
+| C00004   | Basu    | Bombay |  400056 | Maharashtra |      0 |
+| C00005   | Ravi    | Delhi  |  100001 |             |   2000 |
+| C00006   | Rukmini | Bombay |  400050 | Maharashtra |      0 |
++----------+---------+--------+---------+-------------+--------+
+
+
+2>Find out the names of all the clients.
+select name from client_master;
+
++---------+
+| name    |
++---------+
+| Ivan    |
+| Vandana |
+| Pramada |
+| Basu    |
+| Ravi    |
+| Rukmini |
+| Ivan    |
+| Vandana |
+| Pramada |
+| Basu    |
+| Ravi    |
+| Rukmini |
++---------+
+
+3>Retrieve the list of names,city and the state of all the clienrs.
+ select name,city,state from client_master;
++---------+--------+-------------+
+| name    | city   | state       |
++---------+--------+-------------+
+| Ivan    | Bombay | Maharashtra |
+| Vandana | Madras | Tamilnadu   |
+| Pramada | Bombay | Maharashtra |
+| Basu    | Bombay | Maharashtra |
+| Ravi    | Delhi  |             |
+| Rukmini | Bombay | Maharashtra |
+| Ivan    | Bombay | Maharashtra |
+| Vandana | Madras | Tamilnadu   |
+| Pramada | Bombay | Maharashtra |
+| Basu    | Bombay | Maharashtra |
+| Ravi    | Delhi  |             |
+| Rukmini | Bombay | Maharashtra |
++---------+--------+-------------+
+
+4>List the various products available in product_master table.
+ select description from product_master;
++---------------+
+| description   |
++---------------+
+| 1.44floppies  |
+| Monitors      |
+| Mouse         |
+| 1.22 floppies |
+| Keyboards     |
+| CD Drive      |
+| 540 HDD       |
+| 1.44 Drive    |
+| 1.22 Drive    |
++---------------+
+
+5>List all the clients who are located in the Mumbai.
+select * from client_master where city='Mumbai';
+Empty set (0.00 sec)
+
+6>Find the names of salesman who have a salary equal to rs.3000.
+select * from client_master where baldue=3000;;
++----------+---------+--------+---------+-------------+--------+
+| Clientno | Name    | city   | pincode | state       | baldue |
++----------+---------+--------+---------+-------------+--------+
+| C00002   | Vandana | Madras |  780001 | Tamilnadu   |   3000 |
+| C00004   | Basu    | Bombay |  400056 | Maharashtra |   3000 |
+| C00006   | Rukmini | Bombay |  400050 | Maharashtra |   3000 |
+| C00002   | Vandana | Madras |  780001 | Tamilnadu   |   3000 |
+| C00004   | Basu    | Bombay |  400056 | Maharashtra |   3000 |
+| C00006   | Rukmini | Bombay |  400050 | Maharashtra |   3000 |
++----------+---------+--------+---------+-------------+--------+
+
+*UPDATING RECORDS---------
+
+1>change the city of ClientNo ‘C0001’ to  ‘Banglore’.
+ update client_master set city='Banglore' where ClientNo='c00001';
++----------+----------+
+| Clientno | city     |
++----------+----------+
+| C00001   | Banglore |
+| C00001   | Banglore |
++----------+----------+
+
+2>change the city of ClientNo ‘C00001’ to RS.1000.
+update client_master set city='Banglore' where ClientNo='c00001';
++----------+--------+
+| Clientno | baldue |
++----------+--------+
+| C00001   |   1000 |
+| C00001   |   1000 |
++----------+--------+
+
+3>change the cost price of ‘mouse’ to 950.00.
+update product_master set costprice=950 where description='mouse';
+
++-------------+-----------+
+| description | costprice |
++-------------+-----------+
+| Mouse       |       950 |
++-------------+-----------+
+
+4>change the city of salesman to pune.
+->update client_master set city="pune";
++----------+---------+------+---------+-------------+--------+
+| Clientno | Name    | city | pincode | state       | baldue |
++----------+---------+------+---------+-------------+--------+
+| C00001   | Ivan    | Pune |  400054 | Maharashtra |   1000 |
+| C00002   | Vandana | Pune |  780001 | Tamilnadu   |   3000 |
+| C00003   | Pramada | Pune |  400057 | Maharashtra |   5000 |
+| C00004   | Basu    | Pune |  400056 | Maharashtra |   3000 |
+| C00005   | Ravi    | Pune |  100001 |             |   2000 |
+| C00006   | Rukmini | Pune |  400050 | Maharashtra |   3000 |
+| C00001   | Ivan    | Pune |  400054 | Maharashtra |   1000 |
+| C00002   | Vandana | Pune |  780001 | Tamilnadu   |   3000 |
+| C00003   | Pramada | Pune |  400057 | Maharashtra |   5000 |
+| C00004   | Basu    | Pune |  400056 | Maharashtra |   3000 |
+| C00005   | Ravi    | Pune |  100001 |             |   2000 |
+| C00006   | Rukmini | Pune |  400050 | Maharashtra |   3000 |
++----------+---------+------+---------+-------------+--------+
+ 
+

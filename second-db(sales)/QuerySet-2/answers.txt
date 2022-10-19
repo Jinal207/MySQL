@@ -1,0 +1,120 @@
+
+ select * from client_master where name like '_a%';
++----------+---------+--------+---------+-------------+--------+
+| clientno | Name    | city   | pincode | state       | baldue |
++----------+---------+--------+---------+-------------+--------+
+| C00002   | Vandana | Madras |  780001 | Tamilnadu   |   6000 |
+| C00004   | Basu    | Bombay |  400056 | Maharashtra |      0 |
+| C00005   | Ravi    | Delhi  |  100001 | Tamilnadu   |   2000 |
++----------+---------+--------+---------+-------------+--------+
+
+
+ select * from client_master where city like 'm%';
++----------+---------+--------+---------+-----------+--------+
+| clientno | Name    | city   | pincode | state     | baldue |
++----------+---------+--------+---------+-----------+--------+
+| C00002   | Vandana | Madras |  780001 | Tamilnadu |   6000 |
++----------+---------+--------+---------+-----------+--------+
+
+select * from client_master where state in ('banglore','tamilnadu');
++----------+---------+--------+---------+-----------+--------+
+| clientno | Name    | city   | pincode | state     | baldue |
++----------+---------+--------+---------+-----------+--------+
+| C00002   | Vandana | Madras |  780001 | Tamilnadu |   6000 |
+| C00005   | Ravi    | Delhi  |  100001 | Tamilnadu |   2000 |
++----------+---------+--------+---------+-----------+--------+
+
+
+ select * from client_master where baldue>10000;
++----------+------+--------+---------+-------------+--------+
+| clientno | Name | city   | pincode | state       | baldue |
++----------+------+--------+---------+-------------+--------+
+| C00001   | Ivan | Bombay |  400054 | Maharashtra |  15000 |
++----------+------+--------+---------+-------------+--------+
+
+
+ select * from sales_order where month(delydate)=6;
++---------+----------+------------+----------+-------------+----------+--------+------------+-------------+
+| orderno | clientno | orderdate  | delyaddr | salesman_no | delytype | billyn | delydate   | orderstatus |
++---------+----------+------------+----------+-------------+----------+--------+------------+-------------+
+| O19002  | C00002   | 2004-06-25 | vadodara | S00002      | P        | N      | 2002-06-27 | cancelled   |
++---------+----------+------------+----------+-------------+----------+--------+------------+-------------+
+
+
+select * from sales_order where clientno in ('c00001','c00002');
++---------+----------+------------+----------+-------------+----------+--------+------------+-------------+
+| orderno | clientno | orderdate  | delyaddr | salesman_no | delytype | billyn | delydate   | orderstatus |
++---------+----------+------------+----------+-------------+----------+--------+------------+-------------+
+| O19001  | C00001   | 2004-06-12 | surat    | S00001      | F        | N      | 2002-07-02 | in process  |
+| O19003  | C00001   | 2004-04-03 | surat    | S00001      | F        | Y      | 2002-04-07 | fulfilled   |
+| O19002  | C00002   | 2004-06-25 | vadodara | S00002      | P        | N      | 2002-06-27 | cancelled   |
++---------+----------+------------+----------+-------------+----------+--------+------------+-------------+
+
+
+ select * from product_master where sellprice>500 and sellprice<=750;
++-----------+--------------+---------------+--------------+-----------+-------------+-----------+-----------+
+| productno | description  | profitpercent | unitmeasured | qtyonhand | recorderlvl | sellprice | costprice |
++-----------+--------------+---------------+--------------+-----------+-------------+-----------+-----------+
+| P00001    | 1.44floppies |          5.00 | piece        |       100 |          20 |       525 |       500 |
+| P07865    | 1.22floppies |          5.00 | piece        |       100 |          20 |       525 |       500 |
++-----------+--------------+---------------+--------------+-----------+-------------+-----------+-----------+
+
+ select (sellprice*15) as 'new_price' from product_master where sellprice>500;
++-----------+
+| new_price |
++-----------+
+|      7875 |
+|    180000 |
+|     15750 |
+|      7875 |
+|     47250 |
+|    126000 |
+|     15750 |
+|     15750 |
+|     15750 |
++-----------+
+
+ select name,city,state from client_master where state not in('maharashtra');
++---------+--------+-----------+
+| name    | city   | state     |
++---------+--------+-----------+
+| Vandana | Madras | Tamilnadu |
+| Ravi    | Delhi  | Tamilnadu |
++---------+--------+-----------+
+
+
+ select count(orderno) from sales_order_detail;
++----------------+
+| count(orderno) |
++----------------+
+|             14 |
++----------------+
+
+ select avg(sellprice) from product_master;
++----------------+
+| avg(sellprice) |
++----------------+
+|      3200.0000 |
++----------------+
+
+ select min(sellprice) as 'min_price',max(sellprice) as 'max_price' from product_master;
++-----------+-----------+
+| min_price | max_price |
++-----------+-----------+
+|       525 |     12000 |
++-----------+-----------+
+
+select count(description) from product_master where sellprice<=500;
++--------------------+
+| count(description) |
++--------------------+
+|                  0 |
++--------------------+
+
+
+select * from product_master where qtyonhand < recorderlvl;
++-----------+-------------+---------------+--------------+-----------+-------------+-----------+-----------+
+| productno | description | profitpercent | unitmeasured | qtyonhand | recorderlvl | sellprice | costprice |
++-----------+-------------+---------------+--------------+-----------+-------------+-----------+-----------+
+| P08865    | 1.22 Drive  |          5.00 | piece        |         2 |           3 |      1050 |      1000 |
++-----------+-------------+---------------+--------------+-----------+-------------+-----------+-----------+
